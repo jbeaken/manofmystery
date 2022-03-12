@@ -23,6 +23,8 @@ repositories {
 dependencies {
     // Use the latest Groovy version for building this library
     implementation 'org.apache.groovy:groovy:4.0.1'
+
+    implementation 'org.apache.ivy:ivy:2.5.0'
 }
 
 
