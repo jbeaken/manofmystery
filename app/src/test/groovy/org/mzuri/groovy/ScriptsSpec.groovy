@@ -13,10 +13,10 @@ class ScriptsSpec extends Specification {
         groovyClassLoader.addClasspath("/home/hal/.groovy/grapes/org.apache.ivy/ivy/jars/ivy-2.4.0.jar")
         def ivyMessageLoggerClazz = groovyClassLoader.loadClass("org.apache.ivy.util.MessageLogger")
 
-        when: "Class is loaded"
+        when: "Script is loaded"
         Class clazz = groovyClassLoader.parseClass( new File( getClass().getResource("/scripts/WelcomeScript.groovy").toURI() ))
 
-        then: "Class is verfified"
+        then: "Class is verified"
         clazz.getDeclaredConstructor().newInstance()
     }
 }
