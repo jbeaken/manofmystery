@@ -1,5 +1,9 @@
 package org.mzuri.groovy
 
+import com.cloudbees.groovy.cps.CpsTransformer
+import com.cloudbees.groovy.cps.TransformerConfiguration
+import org.mzuri.groovy.cps.MockClosure
+import org.mzuri.groovy.cps.MockPipelineScriptCPS
 import spock.lang.Specification
 
 class ScriptsSpec extends Specification {
@@ -28,14 +32,17 @@ class ScriptsSpec extends Specification {
 
     def "Load script with GroovyScriptEngine and CPS"() {
 
+        given: "GroovyScriptEngine is booted up"
         URL resource = getClass().getResource("/scripts/")
         def engine = new GroovyScriptEngine([ resource ] as URL[] )
 
-        // Set script base class
+        and: "Set script base class"
+        Class scriptBaseClass = MockPipelineScriptCPS.class
         engine.getConfig().setScriptBaseClass(scriptBaseClass.getName())
-//        // Add transformer for CPS compilation
-//        def transformer = new CpsTransformer()
-//        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
-//        gse.getConfig().addCompilationCustomizers(transformer)
+
+        and: "Add transformer for CPS compilation"
+        def transformer = new CpsTransformer()
+        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
+        engine.getConfig().addCompilationCustomizers(transformer)
     }
 }
