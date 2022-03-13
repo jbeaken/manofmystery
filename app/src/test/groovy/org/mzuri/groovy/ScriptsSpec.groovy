@@ -44,5 +44,13 @@ class ScriptsSpec extends Specification {
         def transformer = new CpsTransformer()
         transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
         engine.getConfig().addCompilationCustomizers(transformer)
+
+        when: "run script"
+        def binding = new Binding()
+        def greeter = engine.run('WelcomeScript.groovy', binding)
+
+        then: "Script is run successfully"
+        println greeter.sayHello()
+
     }
 }
