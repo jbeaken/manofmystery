@@ -10,7 +10,7 @@ repositories {
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.1'
 
-//    implementation 'org.apache.ivy:ivy:2.5.0'
+    implementation 'org.apache.ivy:ivy:2.5.0'
 
     testImplementation platform("org.spockframework:spock-bom:2.2-M1-groovy-4.0")
     testImplementation "org.spockframework:spock-core"

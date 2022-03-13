@@ -13,21 +13,16 @@ class ScriptsSpec extends Specification {
         and: "Ivy is added to the classpath"
         groovyClassLoader.addClasspath("/home/hal/.groovy/grapes/org.apache.ivy/ivy/jars/ivy-2.4.0.jar")
 
-        and:
-        groovyClassLoader.getURLs().each {
-            println it
-        }
-
         when: "Ivy class is loaded"
         def ivyMessageLoggerClazz = groovyClassLoader.loadClass("org.apache.ivy.util.MessageLogger")
 
         then: "It is valid"
         ivyMessageLoggerClazz.toString() == "interface org.apache.ivy.util.MessageLogger"
 
-//        when: "Script is loaded"
+        when: "Script is loaded"
         Class clazz = groovyClassLoader.parseClass( new File( getClass().getResource("/scripts/WelcomeScript.groovy").toURI() ))
-//
-//        then: "Class is verified"
+
+        then: "Class is verified"
         clazz.getDeclaredConstructor().newInstance()
     }
 
@@ -38,9 +33,9 @@ class ScriptsSpec extends Specification {
 
         // Set script base class
         gse.getConfig().setScriptBaseClass(scriptBaseClass.getName())
-        // Add transformer for CPS compilation
-        def transformer = new CpsTransformer()
-        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
-        gse.getConfig().addCompilationCustomizers(transformer)
+//        // Add transformer for CPS compilation
+//        def transformer = new CpsTransformer()
+//        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
+//        gse.getConfig().addCompilationCustomizers(transformer)
     }
 }
