@@ -32,7 +32,7 @@ class ScriptsSpec extends Specification {
         def engine = new GroovyScriptEngine([ resource ] as URL[] )
 
         // Set script base class
-        gse.getConfig().setScriptBaseClass(scriptBaseClass.getName())
+        engine.getConfig().setScriptBaseClass(scriptBaseClass.getName())
 //        // Add transformer for CPS compilation
 //        def transformer = new CpsTransformer()
 //        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
