@@ -30,4 +30,17 @@ class ScriptsSpec extends Specification {
 //        then: "Class is verified"
         clazz.getDeclaredConstructor().newInstance()
     }
+
+    def "Load script with GroovyScriptEngine and CPS"() {
+
+        URL resource = getClass().getResource("/scripts/")
+        def engine = new GroovyScriptEngine([ resource ] as URL[] )
+
+        // Set script base class
+        gse.getConfig().setScriptBaseClass(scriptBaseClass.getName())
+        // Add transformer for CPS compilation
+        def transformer = new CpsTransformer()
+        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
+        gse.getConfig().addCompilationCustomizers(transformer)
+    }
 }
