@@ -53,4 +53,18 @@ class ScriptsSpec extends Specification {
         println greeter.sayHello()
 
     }
+
+    def "Load script with GroovyScriptEngine without CPS"() {
+
+        given: "GroovyScriptEngine is booted up"
+        URL resource = getClass().getResource("/scripts/")
+        def engine = new GroovyScriptEngine([ resource ] as URL[] )
+
+        when: "run script"
+        def binding = new Binding()
+        def greeter = engine.run('WelcomeScript.groovy', binding)
+
+        then: "Script is run successfully"
+        greeter.sayHello() == "Hello, world!"
+    }
 }
