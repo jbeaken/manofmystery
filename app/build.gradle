@@ -1,6 +1,7 @@
 plugins {
     id 'groovy'
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -10,7 +11,7 @@ repositories {
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.1'
     implementation 'org.apache.ivy:ivy:2.5.0'
-    implementation 'com.cloudbees:groovy-cps:1.22'
+    implementation 'com.cloudbees:groovy-cps:1.31'
 
     testImplementation platform("org.spockframework:spock-bom:2.2-M1-groovy-4.0")
     testImplementation "org.spockframework:spock-core"
@@ -31,5 +32,22 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
 

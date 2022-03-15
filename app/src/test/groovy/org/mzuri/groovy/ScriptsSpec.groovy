@@ -30,7 +30,7 @@ class ScriptsSpec extends Specification {
         clazz.getDeclaredConstructor().newInstance()
     }
 
-    def "Load script with GroovyScriptEngine and CPS"() {
+    def "Load script with GroovyScriptEngine with CPS"() {
 
         given: "GroovyScriptEngine is booted up"
         URL resource = getClass().getResource("/scripts/")
@@ -42,7 +42,7 @@ class ScriptsSpec extends Specification {
 
         and: "Add transformer for CPS compilation"
         def transformer = new CpsTransformer()
-        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
+//        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
         engine.getConfig().addCompilationCustomizers(transformer)
 
         when: "run script"
