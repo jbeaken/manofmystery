@@ -30,41 +30,41 @@ class ScriptsSpec extends Specification {
         clazz.getDeclaredConstructor().newInstance()
     }
 
-    def "Load script with GroovyScriptEngine with CPS"() {
+//    def "Load script with GroovyScriptEngine with CPS"() {
+//
+//        given: "GroovyScriptEngine is booted up"
+//        URL resource = getClass().getResource("/scripts/")
+//        def engine = new GroovyScriptEngine([ resource ] as URL[] )
+//
+//        and: "Set script base class"
+//        Class scriptBaseClass = MockPipelineScriptCPS.class
+//        engine.getConfig().setScriptBaseClass(scriptBaseClass.getName())
+//
+//        and: "Add transformer for CPS compilation"
+//        def transformer = new CpsTransformer()
+////        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
+//        engine.getConfig().addCompilationCustomizers(transformer)
+//
+//        when: "run script"
+//        def binding = new Binding()
+//        def greeter = engine.run('WelcomeScript.groovy', binding)
+//
+//        then: "Script is run successfully"
+//        println greeter.sayHello()
+//
+//    }
 
-        given: "GroovyScriptEngine is booted up"
-        URL resource = getClass().getResource("/scripts/")
-        def engine = new GroovyScriptEngine([ resource ] as URL[] )
-
-        and: "Set script base class"
-        Class scriptBaseClass = MockPipelineScriptCPS.class
-        engine.getConfig().setScriptBaseClass(scriptBaseClass.getName())
-
-        and: "Add transformer for CPS compilation"
-        def transformer = new CpsTransformer()
-//        transformer.setConfiguration(new TransformerConfiguration().withClosureType(MockClosure.class))
-        engine.getConfig().addCompilationCustomizers(transformer)
-
-        when: "run script"
-        def binding = new Binding()
-        def greeter = engine.run('WelcomeScript.groovy', binding)
-
-        then: "Script is run successfully"
-        println greeter.sayHello()
-
-    }
-
-    def "Load script with GroovyScriptEngine without CPS"() {
-
-        given: "GroovyScriptEngine is booted up"
-        URL resource = getClass().getResource("/scripts/")
-        def engine = new GroovyScriptEngine([ resource ] as URL[] )
-
-        when: "run script"
-        def binding = new Binding()
-        def greeter = engine.run('WelcomeScript.groovy', binding)
-
-        then: "Script is run successfully"
-        greeter.sayHello() == "Hello, world!"
-    }
+//    def "Load script with GroovyScriptEngine without CPS"() {
+//
+//        given: "GroovyScriptEngine is booted up"
+//        URL resource = getClass().getResource("/scripts/")
+//        def engine = new GroovyScriptEngine([ resource ] as URL[] )
+//
+//        when: "run script"
+//        def binding = new Binding()
+//        def greeter = engine.run('WelcomeScript.groovy', binding)
+//
+//        then: "Script is run successfully"
+//        greeter.sayHello() == "Hello, world!"
+//    }
 }
