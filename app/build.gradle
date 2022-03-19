@@ -16,10 +16,21 @@ dependencies {
     testImplementation platform("org.spockframework:spock-bom:2.2-M1-groovy-4.0")
     testImplementation "org.spockframework:spock-core"
 
+    //Test containers
+    testImplementation "org.testcontainers:spock:1.16.3"
+    testImplementation "org.testcontainers:postgresql:1.16.3"
+
     // optional dependencies for using Spock
     testImplementation "org.hamcrest:hamcrest-core:2.2"   // only necessary if Hamcrest matchers are used
     testRuntimeOnly 'net.bytebuddy:byte-buddy:1.12.7' // allows mocking of classes (in addition to interfaces)
     testRuntimeOnly "org.objenesis:objenesis:3.2"      // allows mocking of classes without default constructor (together with ByteBuddy or CGLIB)
+
+    //Logging
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
+//    testImplementation 'org.slf4j:slf4j-jdk14:1.7.36'
+
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
 }
 
 application {
