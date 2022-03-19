@@ -27,10 +27,9 @@ dependencies {
 
     //Logging
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14
-//    testImplementation 'org.slf4j:slf4j-jdk14:1.7.36'
+//    implementation 'org.slf4j:slf4j-jdk14:1.7.36'
 
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+//    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
 }
 
 application {
@@ -38,12 +37,14 @@ application {
     mainClass = 'org.mzuri.groovy.Application'
 }
 
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
+testing {
+    suites {
+        // Configure the built-in test suite
+        test {
+            // Use Spock test framework
+            useSpock('2.0-groovy-3.0')
+        }
     }
-    finalizedBy jacocoTestReport // report is always generated after tests run
 }
 
 jacoco {
