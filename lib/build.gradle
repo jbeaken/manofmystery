@@ -29,7 +29,7 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
 //    implementation 'org.slf4j:slf4j-jdk14:1.7.36'
 
-//    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
 }
 
 
